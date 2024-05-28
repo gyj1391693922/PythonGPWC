@@ -1,6 +1,56 @@
 import urllib.request
 import urllib.parse
 
+def proxyPool():
+    proxy_pool = [
+        {"http": "xxx.xxx.xxx.xxx:xx"},
+        {"http": "yyy.yyy.yyy.yyy:yy"},
+        {"http": "zzz.zzz.zzz.zzz:zz"},
+        {"http": "aaa.aaa.aaa.aaa:aa"},
+        {"http": "bbb.bbb.bbb.bbb:bb"}
+    ]
+    import random
+    proxies = random.choice(proxy_pool)
+    print(proxies)
+
+
+def proxyObject():
+    # 代理使用 ： 快代理
+    url = "http://www.baidu.com/s?"
+    data = {"wd":"我的ip"}
+    url = url + urllib.parse.urlencode(data)
+    headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0"}
+    request = urllib.request.Request(url,headers=headers)
+    #代理
+    # 模拟浏览器访问服务器
+    proxies = {
+        "http":"218.87.205.18:16906"
+    }
+    handler = urllib.request.ProxyHandler(proxies=proxies)
+    opener = urllib.request.build_opener(handler)
+    response = opener.open(request)
+    content = response.read().decode("utf-8")
+    with open("bd.html","w",encoding="utf-8") as fp:
+        fp.write(content)
+    print(content)
+
+
+
+
+def handler():
+    url = 'http://www.baidu.com'
+    headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0"}
+    request = urllib.request.Request(url=url,headers=headers)
+    # 获取handler对象
+    handler = urllib.request.HTTPHandler()
+    # 获取opener对象
+    opener = urllib.request.build_opener(handler)
+    # 调用open方法
+    response = opener.open(request)
+    content = response.read().decode("utf-8")
+    print(content)
+
+
 def doubanTop10():
     url = "https://movie.douban.com/j/search_subjects?"
     data = {
@@ -110,4 +160,4 @@ def getContent():
 
 
 if __name__ == '__main__':
-    doubanTop10()
+    proxyPool()

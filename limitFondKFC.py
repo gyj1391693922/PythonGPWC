@@ -29,8 +29,8 @@ def to_json(content):
     return object
 
 def download_json(content):
-    fp = open("kfc.json","w",encoding="utf-8")
-    fp.write(content)
+    with open("kfc.json","w",encoding="utf-8") as fp:
+        fp.write(content)
 
 if __name__ == '__main__':
     request = create_request()

@@ -27,8 +27,8 @@ def get_connect(request):
     return content
 
 def downloadMovies(content):
-    fp = open("douban.json","w",encoding="utf-8")
-    fp.write(content)
+    with open("douban.json","w",encoding="utf-8") as fp:
+        fp.write(content)
 
 def toJson(content):
     import json
