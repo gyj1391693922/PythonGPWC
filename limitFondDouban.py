@@ -26,7 +26,15 @@ def get_connect(request):
     content = response.read().decode("utf-8")
     return content
 
+def downloadMovies(content):
+    fp = open("douban.json","w",encoding="utf-8")
+    fp.write(content)
+
+def toJson(content):
+    import json
+    return json.loads(content)
 
 if __name__ == '__main__':
     re = create_request()
-    print(get_connect(re))
+    con = get_connect(re)
+    downloadMovies(con)
