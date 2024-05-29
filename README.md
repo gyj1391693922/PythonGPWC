@@ -6,3 +6,4 @@
 * jsonPathDemo： jsonpath的使用
 * seleniumDemo： selenium的使用
 * xpathDemo： xpath的使用
+* requestsDemo： requests的使用
